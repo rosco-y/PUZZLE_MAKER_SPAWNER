@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading;
 namespace PuzzleMakerSpawner
 {
     internal class Program
@@ -26,10 +27,11 @@ namespace PuzzleMakerSpawner
                 else
                 {
                     processes[i].StartInfo.FileName = $"{PATH}{EXE}{i}.exe";
-                    processes[0].StartInfo.UseShellExecute = true;
-                    processes[0].StartInfo.RedirectStandardOutput = true;
+                    processes[i].StartInfo.UseShellExecute = true;
+                    processes[i].StartInfo.RedirectStandardOutput = false;
                 }
                 processes[i].Start();
+                Thread.Sleep(2000); // 2 seconds.
             }
         }
     }
